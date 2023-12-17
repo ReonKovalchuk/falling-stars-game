@@ -1,0 +1,47 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #14213d;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.stars__container {
+  $container-width: 100vw;
+  width: $container-width;
+  height: 100vh;
+}
+
+.star {
+  position: absolute;
+  top: -20px;
+  color: #fca311;
+  animation: animate 5s linear forwards;
+}
+
+.star:before {
+  content: "\f005";
+  font-family: fontAwesome;
+  text-shadow: 0 0 5px #fca311, 0 0 30px #fca311, 0 0 50px #fca311;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
