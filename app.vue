@@ -1,32 +1,38 @@
 <template>
-  <div class="stars__container">
-    <Star
-      v-for="star in stars"
-      :key="star.id"
-      :style="`left:${star.left};animation-duration:${star.animationDuration}; font-size:${star.fontSize}`"
-    />
-  </div>
+  <nav>
+    <ul>
+      <li>
+        <NuxtLink to="/">One star</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/ManyStars">Many stars</NuxtLink>
+      </li>
+    </ul>
+  </nav>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
-<script setup>
-const starsRate = 500;
-const stars = ref([]);
-function createStar() {
-  stars.value.push({
-    id: new Date().valueOf(),
-    left: Math.random() * +innerWidth + "px",
-    animationDuration: 4 + Math.random() * 4 + "s",
-    fontSize: 20 + Math.random() * 30 + "px",
-  });
+
+<style>
+nav {
+  display: flex;
+  place-content: center;
 }
-
-setTimeout(() => {
-  stars.value.shift();
-  setInterval(() => {
-    stars.value.shift();
-  }, starsRate);
-}, 6000);
-
-setInterval(() => {
-  createStar();
-}, starsRate);
-</script>
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+li {
+  font-size: 24px;
+  color: #fff;
+}
+a {
+  text-decoration: none;
+}
+a:visited {
+  color: #fff;
+}
+</style>

@@ -1,8 +1,10 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+$color-gold: #fca311;
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  --color-gold: #fca311;
 }
 
 body {
@@ -10,29 +12,55 @@ body {
   min-height: 100vh;
   overflow: hidden;
 }
-
+$container-width: 100vw;
 .stars__container {
-  $container-width: 100vw;
   width: $container-width;
   height: 100vh;
 }
-
+.star-wrapper {
+  animation: animateFall 5s linear forwards;
+  top: 0%;
+}
 .star {
   position: absolute;
-  top: -20px;
-  color: #fca311;
-  animation: animate 5s linear forwards;
-}
 
-.star:before {
-  content: "\f005";
-  font-family: fontAwesome;
-  text-shadow: 0 0 5px #fca311, 0 0 30px #fca311, 0 0 50px #fca311;
+  top: 50%;
+  left: 50%;
+  color: $color-gold;
+  animation: animateRotation 5s linear forwards;
+  line-height: 0;
+  filter: drop-shadow(0px 0px 15px var(--color-gold));
 }
+.paused {
+  animation-play-state: paused;
+}
+.hidden {
+  color: transparent;
+  transition: color 0.3s;
+}
+// .star:before {
+//   content: "\f005";
+//   font-family: fontAwesome;
+//   text-shadow: 0 0 5px $color-gold, 0 0 30px $color-gold, 0 0 50px $color-gold;
+// }
 
-@keyframes animate {
+@keyframes animateFall {
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0);
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes animateRotation {
+  0% {
+    transform: rotate(0deg);
     opacity: 1;
   }
 
@@ -41,7 +69,7 @@ body {
   }
 
   100% {
-    transform: translateY(100vh) rotate(360deg);
+    transform: rotate(360deg);
     opacity: 0;
   }
 }

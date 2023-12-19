@@ -1,13 +1,39 @@
 <template>
-  <div class="star"></div>
+  <div
+    class="star-wrapper"
+    :style="wrapperStyle"
+    :class="{ paused: isPaused }"
+    @click="handleClick"
+  >
+    <div
+      class="star"
+      :style="starStyle"
+      :class="{ paused: isPaused, hidden: isPaused }"
+    >
+      <IconsStarIcon></IconsStarIcon>
+    </div>
+    <Burst v-show="showBurst"></Burst>
+  </div>
 </template>
-<style lang="scss" scoped>
-$size: random() * 12;
-$duration: random() * 3;
-$container-width: 1600;
-.star {
-  left: random() * $container-width + "px";
-  font-size: 12 + $size + "px";
-  animation-duration: 4 + $duration + "s";
+
+<style>
+.star-wrapper {
+  position: relative;
+  height: 50px;
+  width: 50px;
 }
 </style>
+
+<script setup>
+const { starStyle, wrapperStyle } = defineProps(["starStyle", "wrapperStyle"]);
+const showBurst = ref(false);
+const isPaused = ref(false);
+const handleClick = () => {
+  //stop falling animation
+  isPaused.value = true;
+  //fade star out
+  //burst
+  showBurst.value = true;
+  //delete from array
+};
+</script>

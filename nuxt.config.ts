@@ -4,5 +4,6 @@ export default defineNuxtConfig({
   css: ["~/assets/main.scss"],
   alias: {
     assets: "/<rootDir>/assets",
+    "@": "/<rootDir>",
   },
 });
