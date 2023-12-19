@@ -11,17 +11,30 @@ body {
   background: #14213d;
   min-height: 100vh;
   overflow: hidden;
+  text-align: center;
+}
+.counter {
+  color: white;
+  font-size: 30px;
+  padding-bottom: 24px;
+  margin-bottom: auto;
+  text-shadow: 0 0 17px var(--color-gold);
+  flex-grow: 1;
 }
 $container-width: 100vw;
 .stars__container {
-  width: $container-width;
-  height: 100vh;
-  position: relative;
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  // width: $container-width;
+  // height: 80vh;
+  // position: relative;
 }
 .star-wrapper {
   animation: animateFall 5s linear forwards;
-  top: 0;
   position: absolute;
+  height: 50px;
+  width: 50px;
 }
 .star {
   position: absolute;

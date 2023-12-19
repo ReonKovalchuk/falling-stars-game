@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <!-- <nav>
     <ul>
       <li>
         <NuxtLink to="/">One star</NuxtLink>
@@ -8,7 +8,7 @@
         <NuxtLink to="/ManyStars">Many stars</NuxtLink>
       </li>
     </ul>
-  </nav>
+  </nav> -->
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
@@ -34,6 +34,9 @@ a {
 }
 a:visited {
   color: #fff;
+}
+.router-link-exact-active {
+  border-bottom: 1px solid #fff;
 }
 </style>
 

@@ -9,10 +9,14 @@
       margin-left: -${star.offset};
   margin-top: -${star.offset};`"
       :wrapper-style="`left:${star.left};top:0px;animation-duration:${star.animationDuration}`"
+      @click="destroyStar(star.id)"
     />
+    <p class="counter">{{ counter }}</p>
   </div>
 </template>
 <script setup>
+import { computed, onMounted } from "vue";
+
 const starsRate = 1000;
 const stars = ref([
   // {
@@ -22,29 +26,39 @@ const stars = ref([
   //   offset: "15px",
   // },
 ]);
+const counter = ref(0);
 function createStar() {
   const starSize = Math.floor(20 + Math.random() * 30);
   stars.value.push({
     id: new Date().valueOf(),
-    left: Math.floor(Math.random() * window.innerWidth) + "px",
-    animationDuration: Math.floor(10 + Math.random() * 4) + "s",
+    left: Math.floor(Math.random() * (window.innerWidth - starSize)) + "px",
+    animationDuration: Math.floor(4 + Math.random() * 4) + "s",
     fontSize: starSize + "px",
     offset: starSize / 2 + "px",
+    burstOffset: Math.floor(Math.random() * 45),
   });
 }
+function destroyStar(id) {
+  counter.value++;
+  setTimeout(() => {
+    stars.value = stars.value.filter((star) => {
+      return star.id !== id;
+    });
+  }, 500);
+}
+const useStarDestructionInterval = (delay) => {
+  setTimeout(() => {
+    starDestruction = setInterval(() => {
+      if (stars.value.length > 7) stars.value.shift();
+    }, starsRate);
+  }, starsRate + delay);
+};
 let starDestruction;
-setTimeout(() => {
-  stars.value.shift();
-  starDestruction = setInterval(() => {
-    stars.value.shift();
-  }, starsRate);
-}, starsRate + 110000);
 
 const starCreation = setInterval(() => {
   createStar();
 }, starsRate);
-onUnmounted(() => {
-  clearInterval(starCreation);
-  clearInterval(starDestruction);
+onMounted(() => {
+  useStarDestructionInterval(7000);
 });
 </script>

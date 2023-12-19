@@ -1,27 +1,13 @@
 <template>
-  <div
-    class="star-wrapper"
-    :style="wrapperStyle"
-    :class="{ paused: isPaused }"
-    @click="handleClick"
-  >
-    <div
-      class="star"
-      :style="starStyle"
-      :class="{ paused: isPaused, hidden: isPaused }"
-    >
+  <div class="star-wrapper" :style="wrapperStyle" @click="handleClick">
+    <div class="star" :style="starStyle" :class="{ hidden: isPaused }">
       <IconsStarIcon></IconsStarIcon>
     </div>
     <Burst v-show="showBurst"></Burst>
   </div>
 </template>
 
-<style>
-.star-wrapper {
-  height: 50px;
-  width: 50px;
-}
-</style>
+<style></style>
 
 <script setup>
 const { starStyle, wrapperStyle } = defineProps(["starStyle", "wrapperStyle"]);
