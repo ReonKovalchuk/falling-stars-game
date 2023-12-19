@@ -16,14 +16,15 @@ $container-width: 100vw;
 .stars__container {
   width: $container-width;
   height: 100vh;
+  position: relative;
 }
 .star-wrapper {
   animation: animateFall 5s linear forwards;
-  top: 0%;
+  top: 0;
+  position: absolute;
 }
 .star {
   position: absolute;
-
   top: 50%;
   left: 50%;
   color: $color-gold;

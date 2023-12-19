@@ -4,7 +4,7 @@
       star-style="font-size:40px;
       margin-top:-20px; margin-left:-20px;
       animation-play-state: paused;"
-      wrapperStyle="animation-play-state: paused;"
+      wrapperStyle="animation-play-state: paused; position:relative;"
     >
     </Star>
   </main>

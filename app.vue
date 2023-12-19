@@ -36,3 +36,10 @@ a:visited {
   color: #fff;
 }
 </style>
+
+<script setup>
+useHead({
+  title: "Falling stars",
+  description: "Учебный проект на Nuxt",
+});
+</script>

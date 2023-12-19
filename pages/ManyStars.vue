@@ -8,7 +8,7 @@
       font-size:${star.fontSize};
       margin-left: -${star.offset};
   margin-top: -${star.offset};`"
-      :wrapper-style="`left:${star.left};animation-duration:${star.animationDuration}`"
+      :wrapper-style="`left:${star.left};top:0px;animation-duration:${star.animationDuration}`"
     />
   </div>
 </template>

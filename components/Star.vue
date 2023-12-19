@@ -18,7 +18,6 @@
 
 <style>
 .star-wrapper {
-  position: relative;
   height: 50px;
   width: 50px;
 }
