@@ -5,8 +5,8 @@
         faller-style="font-size:40px;
       margin-top:-20px; margin-left:-20px;
       animation-play-state: paused;"
-        wrapper-style="animation-play-state: paused; position:relative;"
-        :faller-icon="findIconByName().component"
+        wrapper-style="animation-play-state: paused; position:relative; top:0"
+        faller-icon="star"
         @click="redirect"
       >
       </Faller>

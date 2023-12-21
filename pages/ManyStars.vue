@@ -9,7 +9,7 @@
       margin-left: -${faller.offset};
   margin-top: -${faller.offset};
   color:${faller.color}`"
-      :wrapper-style="`left:${faller.left};top:0px;animation-duration:${faller.animationDuration}`"
+      :wrapper-style="`left:${faller.left};animation-duration:${faller.animationDuration}`"
       :faller-icon="faller.icon"
       @click="counter++"
     />
@@ -26,10 +26,10 @@ const createFaller = () => {
   const fallerParameters = {};
   if (counter.value < 30) {
     //default gold star
-  } else if (counter.value <= 30 && counter.value < 60) {
+  } else if (counter.value >= 30 && counter.value < 60) {
     //star with random colors
     fallerParameters.color = "random";
-  } else if (counter.value <= 60 && counter.value < 90) {
+  } else if (counter.value >= 60 && counter.value < 90) {
     fallerParameters.icon = "random";
     //color default
   } else {
@@ -55,7 +55,9 @@ const disappearFallers = () => {
 };
 
 const fallersManagement = setInterval(() => {
-  createFaller();
+  if (process.client) {
+    createFaller();
+  }
   disappearFallers();
 }, fallersRate * 1000);
 </script>

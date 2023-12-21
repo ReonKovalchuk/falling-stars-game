@@ -1,14 +1,4 @@
 <template>
-  <!-- <nav>
-    <ul>
-      <li>
-        <NuxtLink to="/">One star</NuxtLink>
-      </li>
-      <li>
-        <NuxtLink to="/ManyStars">Many stars</NuxtLink>
-      </li>
-    </ul>
-  </nav> -->
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>

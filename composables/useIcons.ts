@@ -51,23 +51,26 @@ export default function () {
       color = getRandomColor();
     }
     const iconSize = Math.floor(20 + Math.random() * 30);
-    const iconData = {
-      id: new Date().valueOf(),
-      left: Math.floor(Math.random() * (window.innerWidth - iconSize)) + "px",
-      animationDuration:
-        Math.floor(
-          maxAnimationDuration / 2 + (Math.random() * maxAnimationDuration) / 2
-        ) + "s",
-      fontSize: iconSize + "px",
-      offset: iconSize / 2 + "px",
-      color,
-      burstOffset: Math.floor(Math.random() * 45),
-      icon: icon.component,
-    };
-    return iconData;
+    if (process.client) {
+      const iconData = {
+        id: new Date().valueOf(),
+        left: Math.floor(Math.random() * (window.innerWidth - iconSize)) + "px",
+        animationDuration:
+          Math.floor(
+            maxAnimationDuration / 2 +
+              (Math.random() * maxAnimationDuration) / 2
+          ) + "s",
+        fontSize: iconSize + "px",
+        offset: iconSize / 2 + "px",
+        color,
+        burstOffset: Math.floor(Math.random() * 45),
+        icon: icon.name,
+      };
+      return iconData;
+    }
   };
   const getRandomIcon = () => {
-    return icons[Math.round(Math.random() * icons.length)];
+    return icons[Math.floor(Math.random() * icons.length)];
   };
   return { icons, findIconByName, generateIconData, getRandomIcon };
 }

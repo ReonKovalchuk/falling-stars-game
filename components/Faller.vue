@@ -1,7 +1,7 @@
 <template>
   <div class="faller-wrapper" :style="wrapperStyle" @click="handleClick">
     <div class="faller" :style="fallerStyle" :class="{ hidden: isHidden }">
-      <component :is="fallerIcon" />
+      <component :is="findIconByName(fallerIcon).component" />
     </div>
     <Burst v-show="showBurst"></Burst>
   </div>
@@ -10,6 +10,7 @@
 <style></style>
 
 <script setup>
+const { findIconByName } = useIcons();
 const { fallerStyle, wrapperStyle, fallerIcon } = defineProps([
   "fallerStyle",
   "wrapperStyle",

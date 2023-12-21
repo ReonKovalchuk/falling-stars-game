@@ -28,7 +28,7 @@ export default function () {
     }
   };
   const getRandomColor = () => {
-    return colors[Math.round(Math.random() * colors.length)].hex;
+    return colors[Math.floor(Math.random() * colors.length)].hex;
   };
   return { colors, findColorByName, getRandomColor };
 }
