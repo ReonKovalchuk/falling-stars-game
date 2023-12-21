@@ -1,7 +1,7 @@
 <template>
   <div class="stars__container">
     <Faller
-      v-for="faller in fallers"
+      v-for="faller in fallers.values()"
       :key="faller.id"
       :faller-style="`
       animation-duration:${faller.animationDuration}; 
@@ -17,10 +17,10 @@
   </div>
 </template>
 <script setup>
-const fallersRate = 1;
-const { generateIconData, findIconByName } = useIcons();
+const fallersRate = 0.5;
+const { generateIconData } = useIcons();
 
-const fallers = ref([]);
+const fallers = ref(new Map());
 const counter = useState("counter", () => 0);
 const createFaller = () => {
   const fallerParameters = {};
@@ -36,13 +36,22 @@ const createFaller = () => {
     fallerParameters.icon = "random";
     fallerParameters.color = "random";
   }
-  fallers.value.push(
-    generateIconData(fallerParameters.icon, fallerParameters.color)
+  const newFaller = generateIconData(
+    fallerParameters.icon,
+    fallerParameters.color
   );
+  fallers.value.set(newFaller.id, newFaller);
 };
 
 const disappearFallers = () => {
-  fallers.value = fallers.value.slice(-100);
+  const checkpoint = new Date().valueOf() - 9000;
+  if (fallers.value.size > 50) {
+    for (let key of fallers.value.keys()) {
+      if (key < checkpoint) {
+        fallers.value.delete(key);
+      }
+    }
+  }
 };
 
 const fallersManagement = setInterval(() => {
