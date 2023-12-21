@@ -23,17 +23,17 @@ body {
   text-shadow: 0 0 17px var(--color-gold);
   flex-grow: 1;
 }
-.stars__container {
+.fallers__container {
   padding-top: 24px;
   width: 100vw;
 }
-.star-wrapper {
+.faller-wrapper {
   animation: animateFall 5s linear forwards;
   position: absolute;
   height: 50px;
   width: 50px;
 }
-.star {
+.faller {
   position: absolute;
   top: 50%;
   left: 50%;

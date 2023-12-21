@@ -1,14 +1,15 @@
 <template>
   <main class="page-wrapper">
     <div>
-      <Star
-        star-style="font-size:40px;
+      <Faller
+        faller-style="font-size:40px;
       margin-top:-20px; margin-left:-20px;
       animation-play-state: paused;"
-        wrapperStyle="animation-play-state: paused; position:relative;"
+        wrapper-style="animation-play-state: paused; position:relative;"
+        :faller-icon="findIconByName().component"
         @click="redirect"
       >
-      </Star>
+      </Faller>
     </div>
   </main>
 </template>
@@ -19,6 +20,7 @@ const redirect = () => {
     router.push({ path: "/ManyStars" });
   }, 1000);
 };
+const { findIconByName } = useIcons();
 </script>
 <style lang="scss">
 main {
@@ -29,8 +31,5 @@ main {
   align-items: center;
   color: white;
   text-align: center;
-}
-strong {
-  color: var(--color-gold);
 }
 </style>

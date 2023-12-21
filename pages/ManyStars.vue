@@ -1,58 +1,53 @@
 <template>
   <div class="stars__container">
-    <Star
-      v-for="star in stars"
-      :key="star.id"
-      :star-style="`
-      animation-duration:${star.animationDuration}; 
-      font-size:${star.fontSize};
-      margin-left: -${star.offset};
-  margin-top: -${star.offset};
-  color:${star.color}`"
-      :wrapper-style="`left:${star.left};top:0px;animation-duration:${star.animationDuration}`"
+    <Faller
+      v-for="faller in fallers"
+      :key="faller.id"
+      :faller-style="`
+      animation-duration:${faller.animationDuration}; 
+      font-size:${faller.fontSize};
+      margin-left: -${faller.offset};
+  margin-top: -${faller.offset};
+  color:${faller.color}`"
+      :wrapper-style="`left:${faller.left};top:0px;animation-duration:${faller.animationDuration}`"
+      :faller-icon="faller.icon"
       @click="counter++"
     />
     <p class="counter">{{ counter }}</p>
   </div>
 </template>
 <script setup>
-import { COLORS } from "@/composables/colors";
+const fallersRate = 1;
+const { generateIconData, findIconByName } = useIcons();
 
-const starsRate = 1;
-const maxAnimationDuration = 8;
-const maxStarsOnScreen = Math.ceil(maxAnimationDuration / starsRate) + 1;
-const stars = ref([
-  // {
-  //   left: "500px",
-  //   animationDuration: "6s",
-  //   fontSize: "30px",
-  //   offset: "15px",
-  // },
-]);
-const counter = ref(0);
-const createStar = () => {
-  const starSize = Math.floor(20 + Math.random() * 30);
-  const starColor = COLORS[Math.round(Math.random() * COLORS.length)];
-  stars.value.push({
-    id: new Date().valueOf(),
-    left: Math.floor(Math.random() * (window.innerWidth - starSize)) + "px",
-    animationDuration:
-      Math.floor(
-        maxAnimationDuration / 2 + (Math.random() * maxAnimationDuration) / 2
-      ) + "s",
-    fontSize: starSize + "px",
-    offset: starSize / 2 + "px",
-    color: starColor,
-    burstOffset: Math.floor(Math.random() * 45),
-  });
+const fallers = ref([]);
+const counter = useState("counter", () => 0);
+const createFaller = () => {
+  const fallerParameters = {};
+  if (counter.value < 30) {
+    //default gold star
+  } else if (counter.value <= 30 && counter.value < 60) {
+    //star with random colors
+    fallerParameters.color = "random";
+  } else if (counter.value <= 60 && counter.value < 90) {
+    fallerParameters.icon = "random";
+    //color default
+  } else {
+    fallerParameters.icon = "random";
+    fallerParameters.color = "random";
+  }
+  fallers.value.push(
+    generateIconData(fallerParameters.icon, fallerParameters.color)
+  );
 };
 
-const disappearStar = () => {
-  stars.value = stars.value.slice(-100);
+const disappearFallers = () => {
+  fallers.value = fallers.value.slice(-100);
 };
 
-const starManagement = setInterval(() => {
-  createStar();
-  disappearStar();
-}, starsRate * 1000);
+const fallersManagement = setInterval(() => {
+  createFaller();
+  disappearFallers();
+}, fallersRate * 1000);
 </script>
+~/composables/useColors
