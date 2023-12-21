@@ -26,7 +26,7 @@ li {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  --translate: 50%;
+  --translate: 100%;
 }
 
 ul::before,
@@ -64,15 +64,11 @@ li::before,
 li::after {
   width: 100%;
   height: 50%;
-  background: var(--color-gold);
+  background: inherit;
   border-radius: 30px;
   animation: burst 0.5s ease-in-out 1;
   animation-fill-mode: both;
 }
-
-// li::before {
-//   animation-delay: 0.05s;
-// }
 
 li::after {
   animation-delay: 0.05s;
@@ -115,7 +111,7 @@ li:nth-child(8) {
   100% {
     top: 100%;
     opacity: 0;
-    background-color: var(--color-gold);
+    background-color: #fff;
   }
 
   20% {
@@ -141,7 +137,7 @@ li:nth-child(8) {
 .burst-wrapper {
   align-items: center;
   background: transparent;
-  color: var(--color-gold);
+  color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;

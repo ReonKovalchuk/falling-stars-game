@@ -2,8 +2,4 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/main.scss"],
-  alias: {
-    assets: "/<rootDir>/assets",
-    "@": "/<rootDir>",
-  },
 });
