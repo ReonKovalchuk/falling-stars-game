@@ -3,7 +3,7 @@
     <div class="faller" :style="fallerStyle" :class="{ hidden: isHidden }">
       <component :is="findIconByName(fallerIcon).component" />
     </div>
-    <Burst v-show="showBurst"></Burst>
+    <Burst v-show="showBurst" class="effect"></Burst>
   </div>
 </template>
 

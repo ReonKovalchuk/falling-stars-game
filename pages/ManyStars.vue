@@ -5,9 +5,10 @@
       :key="faller.id"
       :faller-style="`
       animation-duration:${faller.animationDuration}; 
-      font-size:${faller.fontSize};
       margin-left: -${faller.offset};
-  margin-top: -${faller.offset};
+margin-top: -${faller.offset};
+      font-size:${faller.fontSize};
+      
   color:${faller.color}`"
       :wrapper-style="`left:${faller.left};animation-duration:${faller.animationDuration}`"
       :faller-icon="faller.icon"
@@ -17,7 +18,8 @@
   </div>
 </template>
 <script setup>
-const fallersRate = 0.5;
+//
+const fallersRate = 0.85;
 const { generateIconData } = useIcons();
 
 const fallers = ref(new Map());
@@ -54,11 +56,12 @@ const disappearFallers = () => {
   }
 };
 
-const fallersManagement = setInterval(() => {
-  if (process.client) {
+if (process.client) {
+  const fallersManagement = setInterval(() => {
     createFaller();
-  }
-  disappearFallers();
-}, fallersRate * 1000);
+
+    disappearFallers();
+  }, fallersRate * 1000);
+}
 </script>
 ~/composables/useColors

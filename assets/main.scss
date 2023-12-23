@@ -1,3 +1,10 @@
+@mixin absolute-center() {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -36,13 +43,15 @@ body {
   top: -20px;
 }
 .faller {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
   color: var(--color-gold);
   animation: animateRotation 5s linear forwards;
   line-height: 0;
+  // transform: translate(-50% -50%);
   filter: drop-shadow(0px 0px 15px);
+  @include absolute-center();
 }
 
 .hidden {

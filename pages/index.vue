@@ -3,9 +3,9 @@
     <div>
       <Faller
         faller-style="font-size:40px;
-      margin-top:-20px; margin-left:-20px;
-      animation-play-state: paused;"
-        wrapper-style="animation-play-state: paused; position:relative; top:0"
+      
+      animation:unset;"
+        wrapper-style="animation:unset; position:relative; top:0"
         faller-icon="star"
         @click="redirect"
       >
@@ -14,13 +14,13 @@
   </main>
 </template>
 <script setup>
+//margin-top:-20px; margin-left:-20px;
 const router = useRouter();
 const redirect = () => {
   setTimeout(() => {
     router.push({ path: "/ManyStars" });
   }, 1000);
 };
-const { findIconByName } = useIcons();
 </script>
 <style lang="scss">
 main {

@@ -30,7 +30,7 @@ export default function () {
   ];
 
   const findIconByName = (name: string = "star") => {
-    if (name === "random") {
+    if (name == "random") {
       return getRandomIcon();
     } else {
       const res = icons.find((icon) => {
@@ -50,7 +50,7 @@ export default function () {
     } else if (color === "random") {
       color = getRandomColor();
     }
-    const iconSize = Math.floor(20 + Math.random() * 30);
+    const iconSize = Math.floor(25 + Math.random() * 30);
     if (process.client) {
       const iconData = {
         id: new Date().valueOf(),
@@ -63,14 +63,14 @@ export default function () {
         fontSize: iconSize + "px",
         offset: iconSize / 2 + "px",
         color,
-        burstOffset: Math.floor(Math.random() * 45),
         icon: icon.name,
       };
       return iconData;
     }
   };
   const getRandomIcon = () => {
-    return icons[Math.floor(Math.random() * icons.length)];
+    const i = Math.floor(Math.random() * icons.length);
+    return icons[i];
   };
   return { icons, findIconByName, generateIconData, getRandomIcon };
 }
