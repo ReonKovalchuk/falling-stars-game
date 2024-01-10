@@ -16,11 +16,11 @@
 <script setup>
 //margin-top:-20px; margin-left:-20px;
 const router = useRouter();
-const redirect = () => {
+function redirect() {
   setTimeout(() => {
     router.push({ path: "/ManyStars" });
   }, 1000);
-};
+}
 </script>
 <style lang="scss">
 main {

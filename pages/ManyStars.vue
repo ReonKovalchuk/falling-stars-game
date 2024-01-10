@@ -1,7 +1,7 @@
 <template>
-  <div class="stars__container">
+  <div class="fallers__container">
     <Faller
-      v-for="faller in fallers.values()"
+      v-for="faller in fallers.keys()"
       :key="faller.id"
       :faller-style="`
       animation-duration:${faller.animationDuration}; 
@@ -12,7 +12,7 @@ margin-top: -${faller.offset};
   color:${faller.color}`"
       :wrapper-style="`left:${faller.left};animation-duration:${faller.animationDuration}`"
       :faller-icon="faller.icon"
-      @click="counter++"
+      @increment="counter++"
     />
     <p class="counter">{{ counter }}</p>
   </div>
@@ -24,7 +24,7 @@ const { generateIconData } = useIcons();
 
 const fallers = ref(new Map());
 const counter = useState("counter", () => 0);
-const createFaller = () => {
+function createFaller() {
   const fallerParameters = {};
   if (counter.value < 30) {
     //default gold star
@@ -42,19 +42,18 @@ const createFaller = () => {
     fallerParameters.icon,
     fallerParameters.color
   );
-  fallers.value.set(newFaller.id, newFaller);
-};
-
-const disappearFallers = () => {
+  fallers.value.set(newFaller, newFaller.id);
+}
+function disappearFallers() {
   const checkpoint = new Date().valueOf() - 9000;
-  if (fallers.value.size > 50) {
+  if (fallers.value.size > 25) {
     for (let key of fallers.value.keys()) {
-      if (key < checkpoint) {
+      if (key.id < checkpoint) {
         fallers.value.delete(key);
       }
     }
   }
-};
+}
 
 if (process.client) {
   const fallersManagement = setInterval(() => {
@@ -64,4 +63,3 @@ if (process.client) {
   }, fallersRate * 1000);
 }
 </script>
-~/composables/useColors

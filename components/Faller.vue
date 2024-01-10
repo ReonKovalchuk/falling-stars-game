@@ -1,5 +1,5 @@
 <template>
-  <div class="faller-wrapper" :style="wrapperStyle" @click="handleClick">
+  <div class="faller-wrapper" :style="wrapperStyle" @click="handleClick()">
     <div class="faller" :style="fallerStyle" :class="{ hidden: isHidden }">
       <component :is="findIconByName(fallerIcon).component" />
     </div>
@@ -16,10 +16,12 @@ const { fallerStyle, wrapperStyle, fallerIcon } = defineProps([
   "wrapperStyle",
   "fallerIcon",
 ]);
+const emit = defineEmits(["increment"]);
 const showBurst = ref(false);
 const isHidden = ref(false);
-const handleClick = () => {
+function handleClick() {
   isHidden.value = true;
   showBurst.value = true;
-};
+  emit("increment");
+}
 </script>

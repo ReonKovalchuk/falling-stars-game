@@ -3,8 +3,9 @@ const maxAnimationDuration = 8;
 import Star from "~/components/icons/Star.vue";
 import Snowflake from "~/components/icons/Snowflake.vue";
 import Flower from "~/components/icons/Flower.vue";
-import Leaf from "@/components/icons/Leaf.vue";
+import Leaf from "~/components/icons/Leaf.vue";
 
+const sizes = [32, 36, 40, 44, 48, 52, 56, 60];
 export default function () {
   const icons = [
     {
@@ -29,7 +30,7 @@ export default function () {
     },
   ];
 
-  const findIconByName = (name: string = "star") => {
+  function findIconByName(name: string = "star") {
     if (name == "random") {
       return getRandomIcon();
     } else {
@@ -38,12 +39,12 @@ export default function () {
       });
       return res ? res : icons[0];
     }
-  };
+  }
 
-  const generateIconData = (
+  function generateIconData(
     iconName: string = "star", //
     color: string = "default"
-  ) => {
+  ) {
     const icon = findIconByName(iconName);
     if (color === "default") {
       color = icon.defaultColor;
@@ -51,6 +52,8 @@ export default function () {
       color = getRandomColor();
     }
     const iconSize = Math.floor(25 + Math.random() * 30);
+    // const iconSize = getRandomSize();
+
     if (process.client) {
       const iconData = {
         id: new Date().valueOf(),
@@ -67,10 +70,14 @@ export default function () {
       };
       return iconData;
     }
-  };
-  const getRandomIcon = () => {
+  }
+  function getRandomIcon() {
     const i = Math.floor(Math.random() * icons.length);
     return icons[i];
-  };
-  return { icons, findIconByName, generateIconData, getRandomIcon };
+  }
+  function getRandomSize() {
+    const i = Math.floor(Math.random() * sizes.length);
+    return sizes[i];
+  }
+  return { icons, findIconByName, generateIconData };
 }

@@ -17,7 +17,7 @@ export default function () {
       hex: "#49B6FF",
     },
   ];
-  const findColorByName = (name: string) => {
+  function findColorByName(name: string) {
     if (name === "random") {
       return getRandomColor();
     } else {
@@ -26,9 +26,9 @@ export default function () {
       });
       return res ? res.hex : colors[0].hex;
     }
-  };
-  const getRandomColor = () => {
+  }
+  function getRandomColor() {
     return colors[Math.floor(Math.random() * colors.length)].hex;
-  };
+  }
   return { colors, findColorByName, getRandomColor };
 }

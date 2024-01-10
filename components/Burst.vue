@@ -12,12 +12,6 @@
 </template>
 <script setup>
 const animationPlaying = ref(false);
-const handleClick = () => {
-  animationPlaying.value = true;
-  setTimeout(() => {
-    animationPlaying.value = false;
-  }, 1000);
-};
 </script>
 <style lang="scss" scoped>
 ul,
